@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C121C660224F6C77004EE31C /* MIDIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C121C656224F6C77004EE31C /* MIDIKit.framework */; };
-		C121C665224F6C77004EE31C /* MIDIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C664224F6C77004EE31C /* MIDIKitTests.swift */; };
+		C121C665224F6C77004EE31C /* MIDIMessageParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C664224F6C77004EE31C /* MIDIMessageParserTests.swift */; };
 		C121C667224F6C77004EE31C /* MIDIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C121C659224F6C77004EE31C /* MIDIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C121C671224F6D00004EE31C /* MIDIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C670224F6D00004EE31C /* MIDIKit.swift */; };
+		C121C675224F6DE8004EE31C /* MIDIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C674224F6DE8004EE31C /* MIDIParser.swift */; };
+		C121C679225127C2004EE31C /* MIDIMessageKindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C678225127C2004EE31C /* MIDIMessageKindTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +30,12 @@
 		C121C659224F6C77004EE31C /* MIDIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIDIKit.h; sourceTree = "<group>"; };
 		C121C65A224F6C77004EE31C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C121C65F224F6C77004EE31C /* MIDIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIDIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C121C664224F6C77004EE31C /* MIDIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIKitTests.swift; sourceTree = "<group>"; };
+		C121C664224F6C77004EE31C /* MIDIMessageParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessageParserTests.swift; sourceTree = "<group>"; };
 		C121C666224F6C77004EE31C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C121C670224F6D00004EE31C /* MIDIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIKit.swift; sourceTree = "<group>"; };
+		C121C674224F6DE8004EE31C /* MIDIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIParser.swift; sourceTree = "<group>"; };
+		C121C678225127C2004EE31C /* MIDIMessageKindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessageKindTests.swift; sourceTree = "<group>"; };
+		C121C67C2251550C004EE31C /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +60,7 @@
 		C121C64C224F6C77004EE31C = {
 			isa = PBXGroup;
 			children = (
+				C121C67C2251550C004EE31C /* Playground.playground */,
 				C121C658224F6C77004EE31C /* MIDIKit */,
 				C121C663224F6C77004EE31C /* MIDIKitTests */,
 				C121C657224F6C77004EE31C /* Products */,
@@ -71,8 +79,10 @@
 		C121C658224F6C77004EE31C /* MIDIKit */ = {
 			isa = PBXGroup;
 			children = (
+				C121C670224F6D00004EE31C /* MIDIKit.swift */,
 				C121C659224F6C77004EE31C /* MIDIKit.h */,
 				C121C65A224F6C77004EE31C /* Info.plist */,
+				C121C674224F6DE8004EE31C /* MIDIParser.swift */,
 			);
 			path = MIDIKit;
 			sourceTree = "<group>";
@@ -80,7 +90,8 @@
 		C121C663224F6C77004EE31C /* MIDIKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				C121C664224F6C77004EE31C /* MIDIKitTests.swift */,
+				C121C678225127C2004EE31C /* MIDIMessageKindTests.swift */,
+				C121C664224F6C77004EE31C /* MIDIMessageParserTests.swift */,
 				C121C666224F6C77004EE31C /* Info.plist */,
 			);
 			path = MIDIKitTests;
@@ -148,6 +159,7 @@
 				TargetAttributes = {
 					C121C655224F6C77004EE31C = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					C121C65E224F6C77004EE31C = {
 						CreatedOnToolsVersion = 10.2;
@@ -194,6 +206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C121C671224F6D00004EE31C /* MIDIKit.swift in Sources */,
+				C121C675224F6DE8004EE31C /* MIDIParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C121C665224F6C77004EE31C /* MIDIKitTests.swift in Sources */,
+				C121C679225127C2004EE31C /* MIDIMessageKindTests.swift in Sources */,
+				C121C665224F6C77004EE31C /* MIDIMessageParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +355,7 @@
 		C121C66B224F6C77004EE31C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -359,6 +375,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.nadoba.MIDIKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -366,6 +383,7 @@
 		C121C66C224F6C77004EE31C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -392,6 +410,7 @@
 		C121C66E224F6C77004EE31C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XKQRPFVM7Z;
@@ -410,6 +429,7 @@
 		C121C66F224F6C77004EE31C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XKQRPFVM7Z;
