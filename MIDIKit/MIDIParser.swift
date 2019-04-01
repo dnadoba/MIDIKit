@@ -269,38 +269,26 @@ public struct MIDIParser {
             messageBuffer.count > maxMessageSize {
             fatalError("internal inconsistency. message buffer size \(messageBuffer.count) is larger than max message size \(maxMessageSize) of \(messageKind)")
         }
-        switch currentMessageKind {
-        case let .oneByte(kind)?:
-            if messageBuffer.count == 1 {
-                let message = kind.parseMessage(commandByte: messageBuffer[0])
-                currentMessageKind = nil
-                messageBuffer.removeLast()
-                return message
-            }
-            return nil
-        case let .twoByte(kind)?:
-            if messageBuffer.count == 2 {
-                let message = kind.parseMessage(commandByte: messageBuffer[0],
-                                                    dataByte: messageBuffer[1])
-                messageBuffer.removeLast()
-                runningMessagesCount += 1
-                return message
-            }
-            return nil
-        case let .threeByte(kind)?:
-            if messageBuffer.count == 3 {
-                let message = kind.parseMessage(commandByte: messageBuffer[0],
-                                                    dataByte0: messageBuffer[1],
-                                                    dataByte1: messageBuffer[2])
-                messageBuffer.removeLast(2)
-                runningMessagesCount += 1
-                return message
-            }
-            return nil
-            
-        // wait for end controll byte
-        case .arbitary?: return nil
-        case .none: return nil
+        switch (currentMessageKind, messageBuffer.count) {
+        case (let .oneByte(kind)?, 1) :
+            let message = kind.parseMessage(commandByte: messageBuffer[0])
+            currentMessageKind = nil
+            messageBuffer.removeLast()
+            return message
+        case (let .twoByte(kind)?, 2):
+            let message = kind.parseMessage(commandByte: messageBuffer[0],
+                                                dataByte: messageBuffer[1])
+            messageBuffer.removeLast()
+            runningMessagesCount += 1
+            return message
+        case (let .threeByte(kind)?, 3):
+            let message = kind.parseMessage(commandByte: messageBuffer[0],
+                                                dataByte0: messageBuffer[1],
+                                                dataByte1: messageBuffer[2])
+            messageBuffer.removeLast(2)
+            runningMessagesCount += 1
+            return message
+        case (_, _): return nil
         }
     }
     public func hasIncompleteMessageInBuffer() -> Bool {
