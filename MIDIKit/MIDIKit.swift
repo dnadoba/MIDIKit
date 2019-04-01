@@ -59,7 +59,7 @@ public enum MIDIError: String, Error {
     case midiIDNotUnique = "Attempt to set a non-unique kMIDIPropertyUniqueID on an object."
     case midiNotPermitted = "The process does not have privileges for the requested operation."
     case midiUnknownError = "Internal error; unable to perform the requested operation."
-    init(_ error: OSStatus) {
+    public init(_ error: OSStatus) {
         switch error {
         case kMIDIInvalidClient: self = .midiInvalidClient
         case kMIDIInvalidPort: self = .midiInvalidPort

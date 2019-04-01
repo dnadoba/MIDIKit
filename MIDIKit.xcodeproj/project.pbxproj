@@ -13,6 +13,9 @@
 		C121C671224F6D00004EE31C /* MIDIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C670224F6D00004EE31C /* MIDIKit.swift */; };
 		C121C675224F6DE8004EE31C /* MIDIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C674224F6DE8004EE31C /* MIDIParser.swift */; };
 		C121C679225127C2004EE31C /* MIDIMessageKindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C678225127C2004EE31C /* MIDIMessageKindTests.swift */; };
+		C121C67E22520F7B004EE31C /* MIDIMessageToBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C67D22520F7B004EE31C /* MIDIMessageToBytes.swift */; };
+		C121C68022520FA0004EE31C /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121C67F22520FA0004EE31C /* MIDIMessage.swift */; };
+		C151788E2252970B0000732D /* MIDIMessageToBytesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C151788D2252970B0000732D /* MIDIMessageToBytesTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		C121C674224F6DE8004EE31C /* MIDIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIParser.swift; sourceTree = "<group>"; };
 		C121C678225127C2004EE31C /* MIDIMessageKindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessageKindTests.swift; sourceTree = "<group>"; };
 		C121C67C2251550C004EE31C /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C121C67D22520F7B004EE31C /* MIDIMessageToBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessageToBytes.swift; sourceTree = "<group>"; };
+		C121C67F22520FA0004EE31C /* MIDIMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
+		C151788D2252970B0000732D /* MIDIMessageToBytesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessageToBytesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,8 @@
 				C121C659224F6C77004EE31C /* MIDIKit.h */,
 				C121C65A224F6C77004EE31C /* Info.plist */,
 				C121C674224F6DE8004EE31C /* MIDIParser.swift */,
+				C121C67D22520F7B004EE31C /* MIDIMessageToBytes.swift */,
+				C121C67F22520FA0004EE31C /* MIDIMessage.swift */,
 			);
 			path = MIDIKit;
 			sourceTree = "<group>";
@@ -90,6 +98,7 @@
 		C121C663224F6C77004EE31C /* MIDIKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				C151788D2252970B0000732D /* MIDIMessageToBytesTests.swift */,
 				C121C678225127C2004EE31C /* MIDIMessageKindTests.swift */,
 				C121C664224F6C77004EE31C /* MIDIMessageParserTests.swift */,
 				C121C666224F6C77004EE31C /* Info.plist */,
@@ -206,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C121C68022520FA0004EE31C /* MIDIMessage.swift in Sources */,
+				C121C67E22520F7B004EE31C /* MIDIMessageToBytes.swift in Sources */,
 				C121C671224F6D00004EE31C /* MIDIKit.swift in Sources */,
 				C121C675224F6DE8004EE31C /* MIDIParser.swift in Sources */,
 			);
@@ -216,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C121C679225127C2004EE31C /* MIDIMessageKindTests.swift in Sources */,
+				C151788E2252970B0000732D /* MIDIMessageToBytesTests.swift in Sources */,
 				C121C665224F6C77004EE31C /* MIDIMessageParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
