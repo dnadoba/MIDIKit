@@ -82,6 +82,14 @@ public enum MIDIError: String, Error {
     }
 }
 
+extension MIDIError {
+    public static func validateNoError(_ status: OSStatus) throws {
+        guard status == noErr else {
+            throw MIDIError(status)
+        }
+    }
+}
+
 fileprivate enum MIDIObjectProperty {
     
 }
@@ -178,10 +186,9 @@ extension MIDIEndpoint {
 }
 
 public class MIDIClient {
-    private(set) var midiClient: MIDIClientRef = 0
-    public init(name: String) {
-        //MIDIClientCreate(c as CFString, nil, nil, &midiClient)
-        MIDIClientCreateWithBlock(name as CFString, &midiClient) { (notificationPointer) in
+    public private(set) var ref: MIDIClientRef = 0
+    public init(name: String) throws {
+        let status = MIDIClientCreateWithBlock(name as CFString, &ref) { (notificationPointer) in
             let notification = notificationPointer.pointee
             debugPrint(notification.messageID)
             if notification.messageID == .msgObjectAdded ||
@@ -198,10 +205,122 @@ public class MIDIClient {
                 dump(propertyChangedNotification)
             }
         }
+        guard status == noErr else {
+            throw MIDIError(status)
+        }
     }
     deinit {
-        MIDIClientDispose(midiClient)
+        MIDIClientDispose(ref)
     }
 }
+
+extension MIDIClient {
+    public func makeOutputPort(name: String) throws -> MIDIOutputPort {
+        return try MIDIOutputPort(client: self, name: name)
+    }
+    public func makeInputPort(name: String, callback: @escaping MIDIInputPort.ReadBlock) throws -> MIDIInputPort {
+        return try MIDIInputPort(client: self, name: name, callback: callback)
+    }
+}
+
+public class MIDIOutputPort {
+    public private(set) var ref: MIDIPortRef = 0
+    public init(client: MIDIClient, name: String) throws {
+        let status = MIDIOutputPortCreate(client.ref, name as CFString, &ref)
+        try MIDIError.validateNoError(status)
+    }
+    deinit {
+        MIDIPortDispose(ref)
+    }
+}
+
+extension Sequence where Element == MIDIMessage {
+    public func allocatePackageList(timeStamp: MIDITimeStamp = 0) -> UnsafePointer<MIDIPacketList> {
+        let sizeOfAlleMessages = self.size
+        assert(sizeOfAlleMessages <= Int(UInt16.max), "allocatePackageList does not support messages bigger than \(UInt16.max)")
+        let packetListSize = MemoryLayout<MIDIPacketList>
+            .offset(of: \MIDIPacketList.packet.data) ?? 0 + sizeOfAlleMessages
+        
+        let packetListPointer = UnsafeMutableRawPointer
+            .allocate(byteCount: packetListSize,
+                      alignment: MemoryLayout<MIDIPacketList>.alignment)
+        defer { packetListPointer.deallocate() }
+        let packetList = packetListPointer.assumingMemoryBound(to: MIDIPacketList.self)
+        packetList.pointee.numPackets = 1
+        
+        let packetPointer = packetListPointer
+            .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
+        let packet = packetPointer.assumingMemoryBound(to: MIDIPacket.self)
+        
+        packet.pointee.timeStamp = timeStamp
+        packet.pointee.length = UInt16(sizeOfAlleMessages)
+        
+        let data = packetPointer
+            .advanced(by: MemoryLayout<MIDIPacket>.offset(of: \MIDIPacket.data)!)
+            .assumingMemoryBound(to: UInt8.self)
+        
+        write(to: data)
+        return UnsafePointer(packetList)
+    }
+}
+
+
+extension MIDIOutputPort {
+    public func send(_ messages: [MIDIMessage], to destination: MIDIEndpoint, timeStamp: MIDITimeStamp = 0) throws {
+        let packetList = messages.allocatePackageList(timeStamp: timeStamp)
+        defer { packetList.deallocate() }
+        try send(packetList, to: destination)
+    }
+}
+
+extension MIDIOutputPort {
+    public func send(_ packetList: UnsafePointer<MIDIPacketList>, to destination: MIDIEndpoint) throws {
+        let status = MIDISend(self.ref, destination.ref, packetList)
+        try MIDIError.validateNoError(status)
+    }
+}
+
+public class MIDIInputPort {
+    public typealias Value = (MIDITimeStamp, [MIDIMessage], MIDIEndpoint)
+    public typealias ReadBlock = (Result<Value, Error>) -> ()
+    public private(set) var ref: MIDIPortRef = 0
+    public private(set) var parser = MIDIParser()
+    public init(client: MIDIClient, name: String, callback: @escaping ReadBlock) throws {
+        let status = MIDIInputPortCreateWithBlock(client.ref, name as CFString, &ref) { [weak self] (packetList, endpointRef) in
+            guard let self = self else { return }
+            guard let source = (endpointRef?
+                .load(as: MIDIEndpointRef.self))
+                .flatMap(MIDIEndpoint.init) else {
+                    
+                    assertionFailure("could not convert endpointRef to MIDISource")
+                    return
+            }
+            
+            var packet = UnsafeRawPointer(packetList)
+                .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
+                .assumingMemoryBound(to: MIDIPacket.self)
+            let packetCount = packetList.pointee.numPackets
+            let timeStamp = packet.pointee.timeStamp
+            
+            for _ in 0..<packetCount {
+                let data = UnsafeRawPointer(packet)
+                    .advanced(by: MemoryLayout<MIDIPacket>.offset(of: \MIDIPacket.data)!)
+                    .assumingMemoryBound(to: UInt8.self)
+                
+                let bytes = UnsafeBufferPointer<UInt8>(start: data, count: Int(packet.pointee.length))
+                let result = Result { try self.parser.parse(data: bytes) }
+                
+                callback(result.map({ (timeStamp, $0, source) }))
+                
+                packet = UnsafePointer(MIDIPacketNext(packet))
+            }
+        }
+        try MIDIError.validateNoError(status)
+    }
+    deinit {
+        MIDIPortDispose(ref)
+    }
+}
+
 
 

@@ -64,6 +64,7 @@ extension Sequence where Element == MIDIMessage {
 }
 
 // MARK: write messages to buffer
+
 extension Sequence where Element == MIDIMessage {
     public func write(to pointer: UnsafeMutablePointer<UInt8>) {
         var pointerHead = pointer
