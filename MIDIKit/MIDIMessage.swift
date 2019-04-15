@@ -40,7 +40,11 @@ extension MIDIMessage {
 }
 
 public struct MIDIChannelMessage: Equatable {
-    static let byteRange: ClosedRange<UInt8> = 0b1000_0000...0b1110_1111
+    public static let channelRange: ClosedRange<UInt8> = 0...0b0000_1111
+    public static let keyRange: ClosedRange<UInt8> = 0...0b0111_1111
+    public static let controllerRange: ClosedRange<UInt8> = 0...0b0111_1111
+    public static let programmNumberRange: ClosedRange<UInt8> = 0...0b0111_1111
+    public static let byteRange: ClosedRange<UInt8> = 0b1000_0000...0b1110_1111
     public enum Kind: Equatable {
         case noteOffEvent(key: UInt8, velocity: UInt8)
         case noteOnEvent(key: UInt8, velocity: UInt8)
@@ -54,7 +58,7 @@ public struct MIDIChannelMessage: Equatable {
     public var kind: Kind
 }
 
-extension MIDIChannelMessage {
+public extension MIDIChannelMessage {
     static func noteOffEvent(channel: UInt8, key: UInt8, velocity: UInt8) -> MIDIChannelMessage {
         return .init(channel: channel, kind: .noteOffEvent(key: key, velocity: velocity))
     }
@@ -80,12 +84,13 @@ extension MIDIChannelMessage {
 
 extension MIDIChannelMessage {
     public static let significantChannelBits: UInt8 = 0b0000_1111
-    static func getChannel(_ byte: UInt8) -> UInt8 {
+    public static func getChannel(_ byte: UInt8) -> UInt8 {
         return byte & significantChannelBits
     }
 }
 
 public enum MIDISystemCommonMessage: Equatable {
+    public static let midiTimeCodeQuarterFrameMessageTypeRange: ClosedRange<UInt8> = 0...0b0000_0111
     case midiTimeCodeQuarterFrame(messageType: UInt8, values: UInt8)
     case songPositionPointer(value: UInt16)
     case songSelect(value: UInt8)
@@ -94,7 +99,7 @@ public enum MIDISystemCommonMessage: Equatable {
     case tuneRequest
 }
 public enum MIDISystemRealtimeMessage: UInt8, CaseIterable {
-    static let byteRange: ClosedRange<UInt8> = 0b1111_1000...0b1111_1111
+    public static let byteRange: ClosedRange<UInt8> = 0b1111_1000...0b1111_1111
     case timeClock =        0b1111_1000
     case undefined1 =       0b1111_1001
     case start =            0b1111_1010

@@ -94,12 +94,12 @@ fileprivate enum MIDIObjectProperty {
     
 }
 
-public protocol MIDIObject {
+public protocol MIDIObjectProtocol {
     var ref: MIDIObjectRef { get }
 }
 
 // MAKR: Utility functions
-extension MIDIObject {
+extension MIDIObjectProtocol {
     public func getProperty(for key: CFString) throws -> String {
         var param: Unmanaged<CFString>?
         let err: OSStatus = MIDIObjectGetStringProperty(ref, key, &param)
@@ -108,14 +108,26 @@ extension MIDIObject {
         }
         return param!.takeRetainedValue() as String
     }
+    public func getProperty(for key: CFString) throws -> Int32 {
+        var param: MIDIUniqueID = 0
+        let err: OSStatus = MIDIObjectGetIntegerProperty(ref, key, &param)
+        guard err == noErr else {
+            throw MIDIError(err)
+        }
+        return param
+    }
 }
 
-extension MIDIObject {
+extension MIDIObjectProtocol {
     public var name: String? { return try? getProperty(for: kMIDIPropertyName) }
+    fileprivate var uniqueID: MIDIUniqueID? { return try? getProperty(for: kMIDIPropertyUniqueID) }
 }
 
 
-public struct MIDIDevice: MIDIObject, Hashable {
+public struct MIDIDevice: MIDIObjectProtocol, Hashable {
+    public struct Identifier: Hashable {
+        fileprivate let uniqueID: MIDIUniqueID
+    }
     public let ref: MIDIDeviceRef
     public init?(_ ref: MIDIEntityRef) {
         guard ref != 0 else { return nil }
@@ -129,9 +141,6 @@ extension MIDIDevice {
             .map(MIDIGetDevice)
             .compactMap(MIDIDevice.init)
     }
-}
-
-extension MIDIDevice {
     public func getEntities() -> [MIDIEntity] {
         return (0..<MIDIDeviceGetNumberOfEntities(ref))
             .map { MIDIDeviceGetEntity(ref, $0) }
@@ -139,7 +148,13 @@ extension MIDIDevice {
     }
 }
 
-public struct MIDIEntity: MIDIObject, Hashable {
+extension MIDIDevice {
+    public var identifier: Identifier? {
+        return uniqueID.map(Identifier.init)
+    }
+}
+
+public struct MIDIEntity: MIDIObjectProtocol, Hashable {
     public let ref: MIDIEntityRef
     public init?(_ ref: MIDIEntityRef) {
         guard ref != 0 else { return nil }
@@ -148,6 +163,11 @@ public struct MIDIEntity: MIDIObject, Hashable {
 }
 
 extension MIDIEntity {
+    public var device: MIDIDevice? {
+        var deviceRef: MIDIDeviceRef = 0
+        guard MIDIEntityGetDevice(ref, &deviceRef) == noErr else { return nil }
+        return MIDIDevice(deviceRef)
+    }
     public func getSources() -> [MIDIEndpoint] {
         return (0..<MIDIEntityGetNumberOfSources(ref))
             .map{ MIDIEntityGetSource(ref, $0) }
@@ -160,7 +180,7 @@ extension MIDIEntity {
     }
 }
 
-public struct MIDIEndpoint: MIDIObject, Hashable {
+public struct MIDIEndpoint: MIDIObjectProtocol, Hashable {
     public let ref: MIDIEndpointRef
     public init?(_ ref: MIDIEndpointRef) {
         guard ref != 0 else { return nil }
@@ -185,25 +205,101 @@ extension MIDIEndpoint {
     public var displayName: String? { return try? getProperty(for: kMIDIPropertyDisplayName)}
 }
 
+public enum MIDIObject {
+    case other(MIDIObjectRef)
+    case device(MIDIDevice)
+    case entity(MIDIEntity)
+    case source(MIDIEndpoint)
+    case destination(MIDIEndpoint)
+    case externalDevice(MIDIObjectRef)
+    case externalEntity(MIDIObjectRef)
+    case externalSource(MIDIObjectRef)
+    case externalDestination(MIDIObjectRef)
+}
+
+extension MIDIObject {
+    init(ref: MIDIObjectRef, type: MIDIObjectType) {
+        switch type {
+        case .other:
+            self = .other(ref)
+        case .device:
+            self = .device(MIDIDevice(ref)!)
+        case .entity:
+            self = .entity(MIDIEntity(ref)!)
+        case .source:
+            self = .source(MIDIEndpoint(ref)!)
+        case .destination:
+            self = .destination(MIDIEndpoint(ref)!)
+        case .externalDevice:
+            self = .externalDevice(ref)
+        case .externalEntity:
+            self = .externalEntity(ref)
+        case .externalSource:
+            self = .externalSource(ref)
+        case .externalDestination:
+            self = .externalDestination(ref)
+        @unknown default:
+            self = .other(ref)
+        }
+    }
+}
+extension MIDIClient.Notification {
+    init(_ message: UnsafePointer<MIDINotification>) {
+        let messageID = message.pointee.messageID
+        switch messageID {
+        case .msgSetupChanged:
+            self = .setupChanged
+        case .msgObjectAdded,
+             .msgObjectRemoved:
+            self = message.withMemoryRebound(to: MIDIObjectAddRemoveNotification.self, capacity: 1) { (message) in
+                let m = message.pointee
+                let parent = MIDIObject(ref: m.parent, type: m.parentType)
+                let child = MIDIObject(ref: m.child, type: m.childType)
+                if messageID == .msgObjectAdded {
+                    return .added(parent: parent, child: child)
+                } else {
+                    return .removed(parent: parent, child: child)
+                }
+            }
+        case .msgPropertyChanged:
+            self = message.withMemoryRebound(to: MIDIObjectPropertyChangeNotification.self, capacity: 1) { (message) in
+                let m = message.pointee
+                return .propertyChanged(of: .init(ref: m.object, type: m.objectType),
+                                        propertyName: m.propertyName.takeRetainedValue() as String)
+            }
+        case .msgThruConnectionsChanged:
+            self = .thruConnectionChanged
+        case .msgSerialPortOwnerChanged:
+            self = .serialPortOwnerChanged
+        case .msgIOError:
+            self = message.withMemoryRebound(to: MIDIIOErrorNotification.self, capacity: 1) { (message) in
+                let m = message.pointee
+                return .ioError(device: MIDIDevice(m.driverDevice)!,
+                                error: MIDIError(m.errorCode))
+            }
+        @unknown default:
+            fatalError("unknow MIDI message ID")
+        }
+    }
+}
+
+
+
+
 public class MIDIClient {
+    public enum Notification {
+        case setupChanged
+        case added(parent: MIDIObject, child: MIDIObject)
+        case removed(parent: MIDIObject, child: MIDIObject)
+        case propertyChanged(of: MIDIObject, propertyName: String)
+        case thruConnectionChanged
+        case serialPortOwnerChanged
+        case ioError(device: MIDIDevice, error: MIDIError)
+    }
     public private(set) var ref: MIDIClientRef = 0
-    public init(name: String) throws {
+    public init(name: String, notificationCallback callback: @escaping (MIDIClient.Notification) -> ()) throws {
         let status = MIDIClientCreateWithBlock(name as CFString, &ref) { (notificationPointer) in
-            let notification = notificationPointer.pointee
-            debugPrint(notification.messageID)
-            if notification.messageID == .msgObjectAdded ||
-                notification.messageID == .msgObjectRemoved {
-                let removeOrAddedNotification = notificationPointer.withMemoryRebound(to: MIDIObjectAddRemoveNotification.self, capacity: 1, { (addOrRemove) in
-                    return addOrRemove.pointee
-                })
-                dump(removeOrAddedNotification)
-            }
-            if notification.messageID == .msgPropertyChanged {
-                let propertyChangedNotification = notificationPointer.withMemoryRebound(to: MIDIObjectPropertyChangeNotification.self, capacity: 1, { (notification) in
-                    return notification.pointee
-                })
-                dump(propertyChangedNotification)
-            }
+            callback(MIDIClient.Notification(notificationPointer))
         }
         guard status == noErr else {
             throw MIDIError(status)
