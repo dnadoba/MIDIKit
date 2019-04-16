@@ -4,7 +4,8 @@ import CoreMIDI
 import MIDIKit
 import PlaygroundSupport
 
-let client = try MIDIClient(name: "MidiTestClient")
+let client = MIDIClient(name: "MidiTestClient")
+try client.start()
 
 // Keep playground running
 PlaygroundPage.current.needsIndefiniteExecution = true
@@ -33,14 +34,14 @@ func send(_ messages: [MIDIMessage]) throws {
 }
 let inputPort = try client.makeInputPort(name: "MIDItest_inputPort") { (result) in
     do {
-        let (_, messages, source) = try result.get()
-        print("MIDI Received From Source: \(source.displayName ?? "-")")
-        for message in messages {
+        let packet = try result.get()
+        print("MIDI Received From Source: \(packet.source.displayName ?? "-") \(packet.source.entity?.device?.identifier)")
+        for message in packet.messages {
             print(message)
             if case let .channelMessage(channelMessage) = message {
                 switch channelMessage.kind {
-                case let .noteOnEvent(key, velocity):
-                    try send([.controlChange(channel: 0, controller: key, value: velocity)])
+                case let .noteOnEvent(key, velocity): break
+                    //try send([.controlChange(channel: 0, controller: key, value: velocity)])
                 default: break
                 }
             }
@@ -50,31 +51,33 @@ let inputPort = try client.makeInputPort(name: "MIDItest_inputPort") { (result) 
     }
     
 }
+var source = MIDIEndpoint.getAllSources().last
+try inputPort.connect(to: source!)
+print("sources", MIDIEndpoint.getAllSources().map{ $0.displayName })
 
-
-let channel: UInt8 = 0
-func turnAllLedsOff() throws {
-    for key in UInt8(0)...127 {
-        try send([.controlChange(channel: channel, controller: key, value: 0)])
-    }
-}
-try turnAllLedsOff()
-
-for key in UInt8(0)...127 {
-    try send([.controlChange(channel: channel, controller: key, value: 127)])
-}
-
-for _ in 0...10 {
-    for key in UInt8(70)...85 {
-        try send([.controlChange(channel: channel, controller: key, value: 127)])
-        try send([.controlChange(channel: channel, controller: key, value: 127)])
-        try send([.controlChange(channel: channel, controller: key, value: 127)])
-        try send([.controlChange(channel: channel, controller: key, value: 127)])
-        try send([.controlChange(channel: channel, controller: key, value: 127)])
-    }
-    try turnAllLedsOff()
-    sleep(1)
-    for key in UInt8(0)...127 {
-        try send([.controlChange(channel: channel, controller: key, value: 127)])
-    }
-}
+//let channel: UInt8 = 0
+//func turnAllLedsOff() throws {
+//    for key in UInt8(0)...127 {
+//        try send([.controlChange(channel: channel, controller: key, value: 0)])
+//    }
+//}
+//try turnAllLedsOff()
+//
+//for key in UInt8(0)...127 {
+//    try send([.controlChange(channel: channel, controller: key, value: 127)])
+//}
+//
+//for _ in 0...10 {
+//    for key in UInt8(70)...85 {
+//        try send([.controlChange(channel: channel, controller: key, value: 127)])
+//        try send([.controlChange(channel: channel, controller: key, value: 127)])
+//        try send([.controlChange(channel: channel, controller: key, value: 127)])
+//        try send([.controlChange(channel: channel, controller: key, value: 127)])
+//        try send([.controlChange(channel: channel, controller: key, value: 127)])
+//    }
+//    try turnAllLedsOff()
+//    sleep(1)
+//    for key in UInt8(0)...127 {
+//        try send([.controlChange(channel: channel, controller: key, value: 127)])
+//    }
+//}

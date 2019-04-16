@@ -125,8 +125,9 @@ extension MIDIObjectProtocol {
 
 
 public struct MIDIDevice: MIDIObjectProtocol, Hashable {
-    public struct Identifier: Hashable {
-        fileprivate let uniqueID: MIDIUniqueID
+    public struct Identifier: Hashable, Codable {
+        private let uniqueID: MIDIUniqueID
+        public init(uniqueID: MIDIUniqueID) { self.uniqueID = uniqueID }
     }
     public let ref: MIDIDeviceRef
     public init?(_ ref: MIDIEntityRef) {
@@ -203,6 +204,12 @@ extension MIDIEndpoint {
 
 extension MIDIEndpoint {
     public var displayName: String? { return try? getProperty(for: kMIDIPropertyDisplayName)}
+    
+    public var entity: MIDIEntity? {
+        var entityRef = MIDIEndpointRef()
+        guard MIDIEndpointGetEntity(ref, &entityRef) == noErr else { return nil }
+        return MIDIEntity(entityRef)
+    }
 }
 
 public enum MIDIObject {
@@ -284,7 +291,9 @@ extension MIDIClient.Notification {
 }
 
 
-
+public protocol MIDIClientDelegate: AnyObject {
+    func midiClient(_ client: MIDIClient, didRecieve notification: MIDIClient.Notification)
+}
 
 public class MIDIClient {
     public enum Notification {
@@ -297,9 +306,16 @@ public class MIDIClient {
         case ioError(device: MIDIDevice, error: MIDIError)
     }
     public private(set) var ref: MIDIClientRef = 0
-    public init(name: String, notificationCallback callback: @escaping (MIDIClient.Notification) -> ()) throws {
-        let status = MIDIClientCreateWithBlock(name as CFString, &ref) { (notificationPointer) in
-            callback(MIDIClient.Notification(notificationPointer))
+    public let name: String
+    public weak var delegate: MIDIClientDelegate?
+    public init(name: String) {
+        self.name = name
+    }
+    public func start() throws {
+        let status = MIDIClientCreateWithBlock(name as CFString, &ref) { [weak self] (notificationPointer) in
+            guard let self = self else { return }
+            let notification = MIDIClient.Notification(notificationPointer)
+            self.delegate?.midiClient(self, didRecieve: notification)
         }
         guard status == noErr else {
             throw MIDIError(status)
@@ -376,21 +392,53 @@ extension MIDIOutputPort {
     }
 }
 
+public struct MIDIPackage {
+    public var source: MIDIEndpoint
+    public var timeStamp: MIDITimeStamp
+    public var messages: [MIDIMessage]
+}
+
+fileprivate class MIDIInputConnection {
+    var source: MIDIEndpoint
+    let pointer: UnsafeMutableRawPointer
+    
+    init(source: MIDIEndpoint) {
+        self.source = source
+        pointer = UnsafeMutableRawPointer.allocate(byteCount: MemoryLayout<MIDIInputConnection>.size,
+                                                   alignment: MemoryLayout<MIDIInputConnection>.alignment)
+        pointer.initializeMemory(as: MIDIInputConnection.self, repeating: self, count: 1)
+    }
+    deinit {
+        pointer.deallocate()
+    }
+}
+
+extension MIDIInputConnection: Equatable {
+    static func ==(lhs: MIDIInputConnection, rhs: MIDIInputConnection) -> Bool {
+        return lhs.source == rhs.source
+    }
+}
+
+extension MIDIInputConnection: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(source)
+    }
+}
+
 public class MIDIInputPort {
-    public typealias Value = (MIDITimeStamp, [MIDIMessage], MIDIEndpoint)
+    public typealias Value = MIDIPackage
     public typealias ReadBlock = (Result<Value, Error>) -> ()
     public private(set) var ref: MIDIPortRef = 0
     public private(set) var parser = MIDIParser()
+    private var connections: Set<MIDIInputConnection> = []
     public init(client: MIDIClient, name: String, callback: @escaping ReadBlock) throws {
         let status = MIDIInputPortCreateWithBlock(client.ref, name as CFString, &ref) { [weak self] (packetList, endpointRef) in
             guard let self = self else { return }
-            guard let source = (endpointRef?
-                .load(as: MIDIEndpointRef.self))
-                .flatMap(MIDIEndpoint.init) else {
-                    
-                    assertionFailure("could not convert endpointRef to MIDISource")
-                    return
+            guard let endpointRef = endpointRef else {
+                assertionFailure("endpointRef ist nil")
+                return
             }
+            let source = endpointRef.assumingMemoryBound(to: MIDIInputConnection.self).pointee.source
             
             var packet = UnsafeRawPointer(packetList)
                 .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
@@ -406,7 +454,7 @@ public class MIDIInputPort {
                 let bytes = UnsafeBufferPointer<UInt8>(start: data, count: Int(packet.pointee.length))
                 let result = Result { try self.parser.parse(data: bytes) }
                 
-                callback(result.map({ (timeStamp, $0, source) }))
+                callback(result.map({ MIDIPackage(source: source, timeStamp: timeStamp, messages: $0) }))
                 
                 packet = UnsafePointer(MIDIPacketNext(packet))
             }
@@ -418,5 +466,23 @@ public class MIDIInputPort {
     }
 }
 
+extension MIDIInputPort {
+    public func connect(to source: MIDIEndpoint) throws {
+        let connection = MIDIInputConnection(source: source)
+        
+        
+        guard !connections.contains(connection) else { return }
+        
+        try MIDIError.validateNoError(MIDIPortConnectSource(ref, source.ref, connection.pointer))
+        
+        
+        connections.insert(connection)
+    }
+    public func disconnect(from source: MIDIEndpoint) throws {
+        try MIDIError.validateNoError(MIDIPortDisconnectSource(ref, source.ref))
+        let connection = MIDIInputConnection(source: source)
+        connections.remove(connection)
+    }
+}
 
 
