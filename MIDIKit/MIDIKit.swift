@@ -399,7 +399,8 @@ public struct MIDIPackage {
 }
 
 fileprivate class MIDIInputConnection {
-    var source: MIDIEndpoint
+    let source: MIDIEndpoint
+    var parser = MIDIParser()
     let pointer: UnsafeMutableRawPointer
     
     init(source: MIDIEndpoint) {
@@ -429,37 +430,50 @@ public class MIDIInputPort {
     public typealias Value = MIDIPackage
     public typealias ReadBlock = (Result<Value, Error>) -> ()
     public private(set) var ref: MIDIPortRef = 0
-    public private(set) var parser = MIDIParser()
     private var connections: Set<MIDIInputConnection> = []
+    private let queue = DispatchQueue(label: "MIDIInputPort", qos: .userInteractive)
     public init(client: MIDIClient, name: String, callback: @escaping ReadBlock) throws {
-        let status = MIDIInputPortCreateWithBlock(client.ref, name as CFString, &ref) { [weak self] (packetList, endpointRef) in
-            guard let self = self else { return }
-            guard let endpointRef = endpointRef else {
-                assertionFailure("endpointRef ist nil")
-                return
+        let queue = self.queue
+        try queue.sync {
+            let status = MIDIInputPortCreateWithBlock(client.ref, name as CFString, &ref) { (packetList, endpointRef) in
+                guard let endpointRef = endpointRef else {
+                    assertionFailure("endpointRef ist nil")
+                    return
+                }
+                
+                var packet = UnsafeRawPointer(packetList)
+                    .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
+                    .assumingMemoryBound(to: MIDIPacket.self)
+                let packetCount = packetList.pointee.numPackets
+                let timeStamp = packet.pointee.timeStamp
+                
+                let parsedPacket = queue.sync { () -> [Result<[MIDIMessage], Error>] in
+                    let connection = UnsafeRawPointer(endpointRef).assumingMemoryBound(to: MIDIInputConnection.self).pointee
+                    return (0..<packetCount).map { _ -> Result<[MIDIMessage], Error> in
+                        let data = UnsafeRawPointer(packet)
+                            .advanced(by: MemoryLayout<MIDIPacket>.offset(of: \MIDIPacket.data)!)
+                            .assumingMemoryBound(to: UInt8.self)
+                        
+                        let bytes = UnsafeBufferPointer<UInt8>(start: data, count: Int(packet.pointee.length))
+                        
+                        let result = Result { try connection.parser.parse(data: bytes) }
+                        
+                        packet = UnsafePointer(MIDIPacketNext(packet))
+                        
+                        return result
+                    }
+                }
+                
+                queue.async {
+                    let source = UnsafeRawPointer(endpointRef).assumingMemoryBound(to: MIDIInputConnection.self).pointee.source
+                    for messages in parsedPacket {
+                        let packet = messages.map({ MIDIPackage(source: source, timeStamp: timeStamp, messages: $0) })
+                        callback(packet)
+                    }
+                }
             }
-            let source = endpointRef.assumingMemoryBound(to: MIDIInputConnection.self).pointee.source
-            
-            var packet = UnsafeRawPointer(packetList)
-                .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
-                .assumingMemoryBound(to: MIDIPacket.self)
-            let packetCount = packetList.pointee.numPackets
-            let timeStamp = packet.pointee.timeStamp
-            
-            for _ in 0..<packetCount {
-                let data = UnsafeRawPointer(packet)
-                    .advanced(by: MemoryLayout<MIDIPacket>.offset(of: \MIDIPacket.data)!)
-                    .assumingMemoryBound(to: UInt8.self)
-                
-                let bytes = UnsafeBufferPointer<UInt8>(start: data, count: Int(packet.pointee.length))
-                let result = Result { try self.parser.parse(data: bytes) }
-                
-                callback(result.map({ MIDIPackage(source: source, timeStamp: timeStamp, messages: $0) }))
-                
-                packet = UnsafePointer(MIDIPacketNext(packet))
-            }
+            try MIDIError.validateNoError(status)
         }
-        try MIDIError.validateNoError(status)
     }
     deinit {
         MIDIPortDispose(ref)
@@ -468,20 +482,24 @@ public class MIDIInputPort {
 
 extension MIDIInputPort {
     public func connect(to source: MIDIEndpoint) throws {
-        let connection = MIDIInputConnection(source: source)
-        
-        
-        guard !connections.contains(connection) else { return }
-        
-        try MIDIError.validateNoError(MIDIPortConnectSource(ref, source.ref, connection.pointer))
-        
-        
-        connections.insert(connection)
+        try queue.sync {
+            let connection = MIDIInputConnection(source: source)
+            
+            
+            guard !connections.contains(connection) else { return }
+            
+            try MIDIError.validateNoError(MIDIPortConnectSource(ref, source.ref, connection.pointer))
+            
+            
+            connections.insert(connection)
+        }
     }
     public func disconnect(from source: MIDIEndpoint) throws {
-        try MIDIError.validateNoError(MIDIPortDisconnectSource(ref, source.ref))
-        let connection = MIDIInputConnection(source: source)
-        connections.remove(connection)
+        try queue.sync {
+            try MIDIError.validateNoError(MIDIPortDisconnectSource(ref, source.ref))
+            let connection = MIDIInputConnection(source: source)
+            connections.remove(connection)
+        }
     }
 }
 
