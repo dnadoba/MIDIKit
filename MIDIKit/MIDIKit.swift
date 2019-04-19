@@ -59,6 +59,7 @@ public enum MIDIError: String, Error {
     case midiIDNotUnique = "Attempt to set a non-unique kMIDIPropertyUniqueID on an object."
     case midiNotPermitted = "The process does not have privileges for the requested operation."
     case midiUnknownError = "Internal error; unable to perform the requested operation."
+    case midiWrongObjectType = "MIDI object is not of expected type"
     public init(_ error: OSStatus) {
         switch error {
         case kMIDIInvalidClient: self = .midiInvalidClient
@@ -126,7 +127,7 @@ extension MIDIObjectProtocol {
 
 public struct MIDIDevice: MIDIObjectProtocol, Hashable {
     public struct Identifier: Hashable, Codable {
-        private let uniqueID: MIDIUniqueID
+        fileprivate let uniqueID: MIDIUniqueID
         public init(uniqueID: MIDIUniqueID) { self.uniqueID = uniqueID }
     }
     public let ref: MIDIDeviceRef
@@ -146,6 +147,15 @@ extension MIDIDevice {
         return (0..<MIDIDeviceGetNumberOfEntities(ref))
             .map { MIDIDeviceGetEntity(ref, $0) }
             .compactMap(MIDIEntity.init)
+    }
+    public init(_ identifier: Identifier) throws {
+        var objectRef: MIDIObjectRef = 0
+        var type: MIDIObjectType = .other
+        try MIDIError.validateNoError(
+            MIDIObjectFindByUniqueID(identifier.uniqueID, &objectRef, &type))
+        guard type == .device else { throw MIDIError.midiWrongObjectType }
+        
+        self.ref = objectRef
     }
 }
 
