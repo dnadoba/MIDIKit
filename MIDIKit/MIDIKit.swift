@@ -282,7 +282,7 @@ extension MIDIClient.Notification {
             self = message.withMemoryRebound(to: MIDIObjectPropertyChangeNotification.self, capacity: 1) { (message) in
                 let m = message.pointee
                 return .propertyChanged(of: .init(ref: m.object, type: m.objectType),
-                                        propertyName: m.propertyName.takeRetainedValue() as String)
+                                        propertyName: String(m.propertyName.takeUnretainedValue()))
             }
         case .msgThruConnectionsChanged:
             self = .thruConnectionChanged
