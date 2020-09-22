@@ -356,32 +356,44 @@ public class MIDIOutputPort {
     }
 }
 
+private let sizeOfMIDIPacketList = MemoryLayout<MIDIPacketList>.size
+private let sizeOfMIDIPacket = MemoryLayout<MIDIPacket>.size
+
+/// The `MIDIPacketList` struct consists of two fields, numPackets(`UInt32`) and
+/// packet(an Array of 1 instance of `MIDIPacket`). The packet is supposed to be a "An open-ended
+/// array of variable-length MIDIPackets." but for convenience it is instaciated with
+/// one instance of a `MIDIPacket`. To figure out the size of the header portion of this struct,
+/// we can get the size of a UInt32, or subtract the size of a single packet from the size of a
+/// packet list. I opted for the latter.
+private let sizeOfMIDIPacketListHeader = sizeOfMIDIPacketList - sizeOfMIDIPacket
+
+/// The MIDIPacket struct consists of a timestamp (`MIDITimeStamp`), a length (`UInt16`) and
+/// data (an Array of 256 instances of `Byte`). The data field is supposed to be a "A variable-length
+/// stream of MIDI messages." but for convenience it is instaciated as 256 bytes. To figure out the
+/// size of the header portion of this struct, we can add the size of the `timestamp` and `length`
+/// fields, or subtract the size of the 256 `Byte`s from the size of the whole packet. I opted for
+/// the former.
+private let sizeOfMIDIPacketHeader = MemoryLayout<MIDITimeStamp>.size + MemoryLayout<UInt16>.size
+private let sizeOfMIDICombinedHeaders = sizeOfMIDIPacketListHeader + sizeOfMIDIPacketHeader
+
 extension Sequence where Element == MIDIMessage {
     public func allocatePackageList(timeStamp: MIDITimeStamp = 0) -> UnsafePointer<MIDIPacketList> {
         let sizeOfAlleMessages = self.size
         assert(sizeOfAlleMessages <= Int(UInt16.max), "allocatePackageList does not support messages bigger than \(UInt16.max)")
-        let packetListSize = MemoryLayout<MIDIPacketList>
-            .offset(of: \MIDIPacketList.packet.data) ?? 0 + sizeOfAlleMessages
+        let packetListSize = sizeOfMIDICombinedHeaders + sizeOfAlleMessages
         
         let packetListPointer = UnsafeMutableRawPointer
             .allocate(byteCount: packetListSize,
                       alignment: MemoryLayout<MIDIPacketList>.alignment)
-        defer { packetListPointer.deallocate() }
+        
         let packetList = packetListPointer.assumingMemoryBound(to: MIDIPacketList.self)
-        packetList.pointee.numPackets = 1
         
-        let packetPointer = packetListPointer
-            .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
-        let packet = packetPointer.assumingMemoryBound(to: MIDIPacket.self)
-        
-        packet.pointee.timeStamp = timeStamp
-        packet.pointee.length = UInt16(sizeOfAlleMessages)
-        
-        let data = packetPointer
-            .advanced(by: MemoryLayout<MIDIPacket>.offset(of: \MIDIPacket.data)!)
-            .assumingMemoryBound(to: UInt8.self)
-        
-        write(to: data)
+        let packet = MIDIPacketListInit(packetList)
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
+        defer { buffer.deallocate() }
+        write(to: buffer)
+        MIDIPacketListAdd(packetList, packetListSize, packet, timeStamp, size, UnsafePointer(buffer))
+
         return UnsafePointer(packetList)
     }
 }
