@@ -64,4 +64,25 @@ class MIDIMessageToBytesTests: XCTestCase {
         testWriteAndParserMessages(makeMessages(channel: 0,     data0: 127, data1: 127))
         testWriteAndParserMessages(makeMessages(channel: 15,    data0: 127, data1: 127))
     }
+    
+    func testWriteToMessageListe() throws {
+        func testWriteAndParserMessages(_ messages: [MIDIMessage]) throws {
+            let messageList = messages.allocatePackageList()
+            defer { messageList.deallocate() }
+            var parser = MIDIParser()
+            
+            XCTAssertEqual(messages, try messageList.pointee.parse(using: &parser).flatMap{ try $0.get() })
+        }
+        try testWriteAndParserMessages(makeMessages(channel: 0,     data0: 0,   data1: 0))
+        try testWriteAndParserMessages(makeMessages(channel: 1,     data0: 0,   data1: 0))
+        try testWriteAndParserMessages(makeMessages(channel: 0,     data0: 1,   data1: 0))
+        try testWriteAndParserMessages(makeMessages(channel: 0,     data0: 0,   data1: 1))
+        try testWriteAndParserMessages(makeMessages(channel: 15,    data0: 0,   data1: 0))
+        try testWriteAndParserMessages(makeMessages(channel: 0,     data0: 127, data1: 0))
+        try testWriteAndParserMessages(makeMessages(channel: 0,     data0: 0,   data1: 127))
+        try testWriteAndParserMessages(makeMessages(channel: 15,    data0: 0,   data1: 127))
+        try testWriteAndParserMessages(makeMessages(channel: 15,    data0: 127, data1: 0))
+        try testWriteAndParserMessages(makeMessages(channel: 0,     data0: 127, data1: 127))
+        try testWriteAndParserMessages(makeMessages(channel: 15,    data0: 127, data1: 127))
+    }
 }
