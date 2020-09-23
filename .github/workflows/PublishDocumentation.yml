@@ -1,11 +1,9 @@
 name: PublishDocumentation
 
-on: [push]
-# on:
-#   release:
-#     types: [published]
+on:
+  release:
+    types: [published]
   
-
 jobs:
   deploy_docs:
     runs-on: macos-latest
