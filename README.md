@@ -61,7 +61,7 @@ MIDIKit supports the creation of all common MIDI Messages via dedicated enums. H
 
 ## MIDI Network support
 
-To connect your client with a MIDI network, create a new `MIDINetworkConnect` and call the specialized initializer
+To connect your client to a MIDI network session, create a new `MIDINetworkConnect` and call the specialized initializer
 
 ```
 let connection = MIDINetworkConnection(host: MIDINetworkHost(name: "Session 1", address: "192.168.0.100", port: 5006))
