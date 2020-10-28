@@ -315,12 +315,19 @@ public class MIDIClient {
         case serialPortOwnerChanged
         case ioError(device: MIDIDevice, error: MIDIError)
     }
+    
     public private(set) var ref: MIDIClientRef = 0
     public let name: String
     public weak var delegate: MIDIClientDelegate?
+
+    // MIDI Network support
+    public internal(set) var networkSession: MIDINetworkSession?
+    internal let bonjourService = BonjourService()
+
     public init(name: String) {
         self.name = name
     }
+    
     public func start() throws {
         let status = MIDIClientCreateWithBlock(name as CFString, &ref) { [weak self] (notificationPointer) in
             guard let self = self else { return }
@@ -331,8 +338,11 @@ public class MIDIClient {
             throw MIDIError(status)
         }
     }
+    
     deinit {
         MIDIClientDispose(ref)
+        
+        removeAllNetworkConnections()
     }
 }
 
