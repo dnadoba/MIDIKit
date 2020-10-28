@@ -5,7 +5,7 @@ MIDIKit is a Swift Package for decoding and encoding MIDI Packages and a Swifty 
 
 ## Connection basics
 
-### Create and start the MIDI Client
+Create and start the MIDI Client
 
 ```
 let midiClient = MIDIClient(name: "My Client")
@@ -17,7 +17,7 @@ do {
 }
 ```
 
-### Send messages
+Send messages
 
 ```
 do {
@@ -27,7 +27,7 @@ do {
     // catch error
 }
 ```
-### Receive messages
+Receive messages
 
 ```
 let midiInputPort = try midiClient.makeInputPort(name: "Input", callback: { (result) in
