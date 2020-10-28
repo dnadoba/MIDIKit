@@ -73,7 +73,7 @@ do {
 }
 ```
 
-You can also connect automatically to your first available MIDI Session on your network:
+You can also connect automatically to your first available MIDI Network Session on your network:
 
 ```
 let midiClient = MIDIClient(name: "My Client")
@@ -84,8 +84,10 @@ midiClient.startWithNetworkConnection(connection) { connection in
     }
 }
 ```
+_In order for a MIDI session to be automatically detected, it is necessary to assign a Bonjour name to the session itself, on the host. 
+On macOS this is possible via the Audio MIDI Setup app. On Windows you can use the excellent rtpMIDI free app._
 
-When connected to a MIDI Network, you have dedicated source and destination endpoints:
+When connected to a MIDI Network, you can use the dedicated source and destination endpoints for sending and receiving MIDI messages:
 
 ```
 ...
