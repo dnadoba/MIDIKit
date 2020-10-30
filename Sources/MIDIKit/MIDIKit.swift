@@ -320,12 +320,9 @@ public class MIDIClient {
     public let name: String
     public weak var delegate: MIDIClientDelegate?
 
-    // MIDI Network support
-    public internal(set) var networkSession: MIDINetworkSession?
-    internal let bonjourService = BonjourService()
-
-    public init(name: String) {
+    public init(name: String, delegate: MIDIClientDelegate? = nil) {
         self.name = name
+        self.delegate = delegate
     }
     
     public func start() throws {
@@ -341,8 +338,6 @@ public class MIDIClient {
     
     deinit {
         MIDIClientDispose(ref)
-        
-        removeAllNetworkConnections()
     }
 }
 
