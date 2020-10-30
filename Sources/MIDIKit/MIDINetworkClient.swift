@@ -8,7 +8,7 @@
 import Foundation
 import CoreMIDI
 
-@available(iOS 4.2, macOS 10.15, *)
+@available(iOS 4.2, *)
 public class MIDINetworkClient: MIDIClient {
     
     public private(set) var networkSession: MIDINetworkSession?
