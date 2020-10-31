@@ -8,7 +8,7 @@
 import Foundation
 import CoreMIDI
 
-@available(iOS 4.2, *)
+#if os(iOS)
 public class MIDINetworkClient: MIDIClient {
     
     public private(set) var networkSession: MIDINetworkSession?
@@ -69,3 +69,4 @@ public class MIDINetworkClient: MIDIClient {
         removeAllConnections()
     }
 }
+#endif
