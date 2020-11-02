@@ -320,9 +320,8 @@ public class MIDIClient {
     public let name: String
     public weak var delegate: MIDIClientDelegate?
 
-    public init(name: String, delegate: MIDIClientDelegate? = nil) {
+    public init(name: String) {
         self.name = name
-        self.delegate = delegate
     }
     
     public func start() throws {

@@ -13,23 +13,21 @@ public class MIDINetworkClient: MIDIClient {
     
     public private(set) var networkSession: MIDINetworkSession?
 
-    public init(name: String, connections: [MIDINetworkConnection], delegate: MIDIClientDelegate? = nil) {
+    public init(name: String, connections: [MIDINetworkConnection]) {
         super.init(name: name)
         
         networkSession = MIDINetworkSession()
 
-        self.delegate = delegate
-        
         for connection in connections {
             addConnection(connection)
         }
     }
     
-    public convenience init(name: String, connection: MIDINetworkConnection? = nil, delegate: MIDIClientDelegate? = nil) {
+    public convenience init(name: String, connection: MIDINetworkConnection? = nil) {
         if let connection = connection {
-            self.init(name: name, connections: [connection], delegate: delegate)
+            self.init(name: name, connections: [connection])
         } else {
-            self.init(name: name, connections: [], delegate: delegate)
+            self.init(name: name, connections: [])
         }
     }
     
