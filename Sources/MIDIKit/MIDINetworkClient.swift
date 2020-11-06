@@ -11,13 +11,12 @@ import CoreMIDI
 #if os(iOS)
 public class MIDINetworkClient: MIDIClient {
     
-    public private(set) var networkSession: MIDINetworkSession?
+    public private(set) var networkSession: MIDINetworkSession
 
     public init(name: String, connections: [MIDINetworkConnection]) {
+        networkSession = MIDINetworkSession()
         super.init(name: name)
         
-        networkSession = MIDINetworkSession()
-
         for connection in connections {
             addConnection(connection)
         }
@@ -31,37 +30,28 @@ public class MIDINetworkClient: MIDIClient {
         }
     }
     
-    private var connections: Set<MIDINetworkConnection> {
-        networkSession?.connections() ?? []
+    public var connections: Set<MIDINetworkConnection> {
+        networkSession.connections()
     }
     
-    private func addConnection(_ connection: MIDINetworkConnection) {
-        networkSession?.addConnection(connection)
+    @discardableResult
+    public func addConnection(_ connection: MIDINetworkConnection) -> Bool {
+        networkSession.addConnection(connection)
     }
-
-    private func removeConnection(_ connection: MIDINetworkConnection) {
-        networkSession?.removeConnection(connection)
+    
+    @discardableResult
+    public func removeConnection(_ connection: MIDINetworkConnection) -> Bool {
+        networkSession.removeConnection(connection)
     }
 
     public func removeAllConnections() {
         for connection in connections {
-            networkSession?.removeConnection(connection)
+            networkSession.removeConnection(connection)
         }
     }
 
-    public var sourceEndpoint: MIDIEndpoint? {
-        if let endpoint = networkSession?.sourceEndpoint() {
-            return MIDIEndpoint(endpoint)
-        }
-        return nil
-    }
-    
-    public var destinationEndpoint: MIDIEndpoint? {
-        if let endpoint = networkSession?.destinationEndpoint() {
-            return MIDIEndpoint(endpoint)
-        }
-        return nil
-    }
+    public var sourceEndpoint: MIDIEndpoint? { MIDIEndpoint(networkSession.sourceEndpoint()) }
+    public var destinationEndpoint: MIDIEndpoint? { MIDIEndpoint(networkSession.destinationEndpoint()) }
     
     deinit {
         removeAllConnections()
