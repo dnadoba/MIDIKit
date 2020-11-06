@@ -13,20 +13,12 @@ public class MIDINetworkClient: MIDIClient {
     
     public private(set) var networkSession: MIDINetworkSession
 
-    public init(name: String, connections: [MIDINetworkConnection]) {
+    public override init(name: String) {
         networkSession = MIDINetworkSession()
         super.init(name: name)
         
         for connection in connections {
             addConnection(connection)
-        }
-    }
-    
-    public convenience init(name: String, connection: MIDINetworkConnection? = nil) {
-        if let connection = connection {
-            self.init(name: name, connections: [connection])
-        } else {
-            self.init(name: name, connections: [])
         }
     }
     
