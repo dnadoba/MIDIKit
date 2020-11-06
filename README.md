@@ -7,7 +7,7 @@ MIDIKit is a Swift Package for decoding and encoding MIDI Packages and a Swifty 
 
 Create and start the MIDI Client
 
-```
+```swift
 let midiClient = MIDIClient(name: "My Client")
 
 do {
@@ -19,7 +19,7 @@ do {
 
 Send messages
 
-```
+```swift
 do {
     let outputPort = try midiClient.makeOutputPort(name: "Output") 
     outputPort.send(MIDIMessage.controlChange(channel: 1, controller: 11, value: 64), to: destination)
@@ -29,7 +29,7 @@ do {
 ```
 Receive messages
 
-```
+```swift
 let midiInputPort = try midiClient.makeInputPort(name: "Input", callback: { (result) in
     
     do {
@@ -47,7 +47,7 @@ let midiInputPort = try midiClient.makeInputPort(name: "Input", callback: { (res
 
 MIDIKit supports the creation of all common MIDI Messages via dedicated enums. Here some examples:
 
-```
+```swift
     // Control change
     let messsage = MIDIMessage.controlChange(channel: 1, controller: 11, value: 64), to: destination)
     
@@ -63,7 +63,7 @@ MIDIKit supports the creation of all common MIDI Messages via dedicated enums. H
 
 To connect your client to a MIDI network session, create a specialized `MIDINetworkClient`
 
-```
+```swift
 let connection = MIDINetworkConnection(host: MIDINetworkHost(name: "Session 1", address: "192.168.0.100", port: 5006))
 let midiClient = try MIDINetworkClient(name: "My Client", connection: connection)
 
@@ -76,7 +76,7 @@ do {
 
 When connected to a MIDI Network, you can use the dedicated source and destination endpoints for sending and receiving MIDI messages:
 
-```
+```swift
 ...
 
 let source = midiClient.sourceEndpoint
