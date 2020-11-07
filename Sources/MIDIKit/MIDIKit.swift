@@ -427,16 +427,9 @@ public struct MIDIPackage {
 fileprivate class MIDIInputConnection {
     let source: MIDIEndpoint
     var parser = MIDIParser()
-    let pointer: UnsafeMutableRawPointer
     
     init(source: MIDIEndpoint) {
         self.source = source
-        pointer = UnsafeMutableRawPointer.allocate(byteCount: MemoryLayout<MIDIInputConnection>.size,
-                                                   alignment: MemoryLayout<MIDIInputConnection>.alignment)
-        pointer.initializeMemory(as: MIDIInputConnection.self, repeating: self, count: 1)
-    }
-    deinit {
-        pointer.deallocate()
     }
 }
 
@@ -492,14 +485,13 @@ public class MIDIInputPort {
                     return
                 }
                 let timeStamp = packetList.pointee.packet.timeStamp
-                
+                let connection = Unmanaged<MIDIInputConnection>.fromOpaque(endpointRef).takeUnretainedValue()
+                let source = connection.source
                 let parsedPacket = queue.sync { () -> [Result<[MIDIMessage], Error>] in
-                    let connection = UnsafeRawPointer(endpointRef).assumingMemoryBound(to: MIDIInputConnection.self).pointee
                     return packetList.pointee.parse(using: &connection.parser)
                 }
                 
                 queue.async {
-                    let source = UnsafeRawPointer(endpointRef).assumingMemoryBound(to: MIDIInputConnection.self).pointee.source
                     for messages in parsedPacket {
                         let packet = messages.map({ MIDIPackage(source: source, timeStamp: timeStamp, messages: $0) })
                         callback(packet)
@@ -522,7 +514,7 @@ extension MIDIInputPort {
             
             guard !connections.contains(connection) else { return }
             
-            try MIDIError.validateNoError(MIDIPortConnectSource(ref, source.ref, connection.pointer))
+            try MIDIError.validateNoError(MIDIPortConnectSource(ref, source.ref, Unmanaged.passUnretained(connection).toOpaque()))
             
             
             connections.insert(connection)
