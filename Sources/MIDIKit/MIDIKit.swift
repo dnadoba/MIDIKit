@@ -447,22 +447,26 @@ extension MIDIInputConnection: Hashable {
 
 extension MIDIPacketList {
     public func parse(using parser: inout MIDIParser) -> [Result<[MIDIMessage], Error>] {
-        withUnsafePointer(to: self) { (packetList) in
-            let packetCount = numPackets
-            var packet = UnsafeRawPointer(packetList)
-                .advanced(by: MemoryLayout<MIDIPacketList>.offset(of: \MIDIPacketList.packet)!)
-                .assumingMemoryBound(to: MIDIPacket.self)
-            return (0..<packetCount).map { _ -> Result<[MIDIMessage], Error> in
-                
-                let data = UnsafeRawPointer(packet)
-                    .advanced(by: MemoryLayout<MIDIPacket>.offset(of: \MIDIPacket.data)!)
-                    .assumingMemoryBound(to: UInt8.self)
-                
-                let bytes = UnsafeBufferPointer<UInt8>(start: data, count: Int(packet.pointee.length))
-                
+        let packetCount = numPackets
+        var packet = self.packet
+        return (0..<packetCount).map { index -> Result<[MIDIMessage], Error> in
+            withUnsafeBytes(of: packet.data) { (datPointer) -> Result<[MIDIMessage], Error> in
+                let data = datPointer.baseAddress!.assumingMemoryBound(to: UInt8.self)
+                let bytes = UnsafeBufferPointer<UInt8>(start: data, count: Int(packet.length))
+            
                 let result = Result { try parser.parse(data: bytes) }
                 
-                packet = UnsafePointer(MIDIPacketNext(packet))
+                let nextPacket = MIDIPacketNext(&packet)
+                
+                let isNotLastPacket = index < packetCount
+                if isNotLastPacket {
+                    assert(
+                        nextPacket != UnsafeMutablePointer(nil),
+                        "Packet pointer should not be nil. MIDIPacketList should contain \(packetCount) packets, but we could only read \(index)"
+                    )
+                }
+                
+                packet = nextPacket.pointee
                 
                 return result
             }
