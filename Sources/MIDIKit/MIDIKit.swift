@@ -464,9 +464,8 @@ extension MIDIPacketList {
                         nextPacket != UnsafeMutablePointer(nil),
                         "Packet pointer should not be nil. MIDIPacketList should contain \(packetCount) packets, but we could only read \(index)"
                     )
+                    packet = nextPacket.pointee
                 }
-                
-                packet = nextPacket.pointee
                 
                 return result
             }
