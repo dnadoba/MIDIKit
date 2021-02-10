@@ -2,6 +2,13 @@
 
 MIDIKit is a Swift Package for decoding and encoding MIDI Packages and a Swifty Wrapper for CoreMIDI on iOS and macOS.
 
+## Playground
+There is a playground in the root folder of this repository. 
+You should be able to run it by first opening this Swift Package in Xcode by double-clicking the Package.swift and then opening the Playground in the Project Navigator.
+
+The Playground lists all connected devices, logs all MIDI messages received. 
+You can also send MIDI messages back to all connected devices by using the `send(_:)` function at the end of the Playground. 
+Make sure you connect your MIDI device to your Mac before you start the Playground.
 
 ## Connection basics
 
