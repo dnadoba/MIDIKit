@@ -1,15 +1,14 @@
 import Foundation
-import Darwin
-import CoreMIDI
 import MIDIKit
 import PlaygroundSupport
-
-let client = MIDIClient(name: "MidiTestClient")
-try client.start()
 
 // Keep playground running
 PlaygroundPage.current.needsIndefiniteExecution = true
 
+let client = MIDIClient(name: "MidiTestClient")
+try client.start()
+
+// log all currently connected devices
 print("Devices:")
 MIDIDevice.getAll().forEach {
     print("   \($0.name as Any)")
@@ -26,58 +25,38 @@ MIDIDevice.getAll().forEach {
         }
     }
 }
+// receiving all messages
+let inputPorts = try MIDIEndpoint.getAllSources().map { source -> MIDIInputPort in
+    let inputPort = try client.makeInputPort(name: "MIDItest_inputPort") { (result) in
+        do {
+            let packet = try result.get()
+            print("MIDI Received From Source: \(packet.source.displayName ?? "-") \(packet.source.entity?.device?.identifier.debugDescription ?? "-")")
+            for message in packet.messages {
+                print(message)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    try inputPort.connect(to: source)
+    return inputPort
+}
+
+
+
 let outputPort = try client.makeOutputPort(name: "MIDITest_outputPort")
+
+/// sends message to all devices
+/// - Parameter messages: MIDI messages to send
 func send(_ messages: [MIDIMessage]) throws {
-    try MIDIEndpoint.getAllDestinations().forEach { (destination) in
+    let allDesitnations = MIDIEndpoint.getAllDestinations()
+    if allDesitnations.isEmpty {
+        print("no destinations available")
+    }
+    try allDesitnations.forEach { (destination) in
         try outputPort.send(messages, to: destination)
     }
 }
-let inputPort = try client.makeInputPort(name: "MIDItest_inputPort") { (result) in
-    do {
-        let packet = try result.get()
-        print("MIDI Received From Source: \(packet.source.displayName ?? "-") \(packet.source.entity?.device?.identifier)")
-        for message in packet.messages {
-            print(message)
-            if case let .channelMessage(channelMessage) = message {
-                switch channelMessage.kind {
-                case let .noteOnEvent(key, velocity): break
-                    //try send([.controlChange(channel: 0, controller: key, value: velocity)])
-                default: break
-                }
-            }
-        }
-    } catch {
-        print(error)
-    }
-    
-}
-var source = MIDIEndpoint.getAllSources().last
-try inputPort.connect(to: source!)
-print("sources", MIDIEndpoint.getAllSources().map{ $0.displayName })
 
-//let channel: UInt8 = 0
-//func turnAllLedsOff() throws {
-//    for key in UInt8(0)...127 {
-//        try send([.controlChange(channel: channel, controller: key, value: 0)])
-//    }
-//}
-//try turnAllLedsOff()
-//
-//for key in UInt8(0)...127 {
-//    try send([.controlChange(channel: channel, controller: key, value: 127)])
-//}
-//
-//for _ in 0...10 {
-//    for key in UInt8(70)...85 {
-//        try send([.controlChange(channel: channel, controller: key, value: 127)])
-//        try send([.controlChange(channel: channel, controller: key, value: 127)])
-//        try send([.controlChange(channel: channel, controller: key, value: 127)])
-//        try send([.controlChange(channel: channel, controller: key, value: 127)])
-//        try send([.controlChange(channel: channel, controller: key, value: 127)])
-//    }
-//    try turnAllLedsOff()
-//    sleep(1)
-//    for key in UInt8(0)...127 {
-//        try send([.controlChange(channel: channel, controller: key, value: 127)])
-//    }
-//}
+/// send messages to all devices
+try send([.controlChange(channel: 0, controller: 0, value: 0)])
