@@ -1,0 +1,1202 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 45,
+      "symbol": "MIDIError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 46,
+      "symbol": "MIDIError.midiInvalidClient",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 47,
+      "symbol": "MIDIError.midiInvalidPort",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 48,
+      "symbol": "MIDIError.midiWrongEndpointType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 49,
+      "symbol": "MIDIError.midiNoConnection",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 50,
+      "symbol": "MIDIError.midiUnknownEndpoint",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 51,
+      "symbol": "MIDIError.midiUnknownProperty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 52,
+      "symbol": "MIDIError.midiWrongPropertyType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 53,
+      "symbol": "MIDIError.midiNoCurrentSetup",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 54,
+      "symbol": "MIDIError.midiMessageSendErr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 55,
+      "symbol": "MIDIError.midiServerStartErr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 56,
+      "symbol": "MIDIError.midiSetupFormatErr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 57,
+      "symbol": "MIDIError.midiWrongThread",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 58,
+      "symbol": "MIDIError.midiObjectNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 59,
+      "symbol": "MIDIError.midiIDNotUnique",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 60,
+      "symbol": "MIDIError.midiNotPermitted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 61,
+      "symbol": "MIDIError.midiUnknownError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 62,
+      "symbol": "MIDIError.midiWrongObjectType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 63,
+      "symbol": "MIDIError.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 86,
+      "symbol": "MIDIError",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 87,
+      "symbol": "MIDIError.validateNoError(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 98,
+      "symbol": "MIDIObjectProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 99,
+      "symbol": "MIDIObjectProtocol.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 103,
+      "symbol": "MIDIObjectProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 104,
+      "symbol": "MIDIObjectProtocol.getProperty(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 112,
+      "symbol": "MIDIObjectProtocol.getProperty(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 122,
+      "symbol": "MIDIObjectProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 123,
+      "symbol": "MIDIObjectProtocol.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 128,
+      "symbol": "MIDIDevice",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 129,
+      "symbol": "MIDIDevice.Identifier",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 131,
+      "symbol": "MIDIDevice.Identifier.init(uniqueID:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 133,
+      "symbol": "MIDIDevice.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 134,
+      "symbol": "MIDIDevice.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 140,
+      "symbol": "MIDIDevice",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 141,
+      "symbol": "MIDIDevice.getAll()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 146,
+      "symbol": "MIDIDevice.getEntities()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 151,
+      "symbol": "MIDIDevice.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 162,
+      "symbol": "MIDIDevice",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 163,
+      "symbol": "MIDIDevice.identifier",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 168,
+      "symbol": "MIDIEntity",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 169,
+      "symbol": "MIDIEntity.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 170,
+      "symbol": "MIDIEntity.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 176,
+      "symbol": "MIDIEntity",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 177,
+      "symbol": "MIDIEntity.device",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 182,
+      "symbol": "MIDIEntity.getSources()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 187,
+      "symbol": "MIDIEntity.getDestinations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 194,
+      "symbol": "MIDIEndpoint",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 195,
+      "symbol": "MIDIEndpoint.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 196,
+      "symbol": "MIDIEndpoint.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 202,
+      "symbol": "MIDIEndpoint",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 203,
+      "symbol": "MIDIEndpoint.getAllSources()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 208,
+      "symbol": "MIDIEndpoint.getAllDestinations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 215,
+      "symbol": "MIDIEndpoint",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 216,
+      "symbol": "MIDIEndpoint.displayName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 218,
+      "symbol": "MIDIEndpoint.entity",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 225,
+      "symbol": "MIDIObject",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 226,
+      "symbol": "MIDIObject.other(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 227,
+      "symbol": "MIDIObject.device(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 228,
+      "symbol": "MIDIObject.entity(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 229,
+      "symbol": "MIDIObject.source(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 230,
+      "symbol": "MIDIObject.destination(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 231,
+      "symbol": "MIDIObject.externalDevice(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 232,
+      "symbol": "MIDIObject.externalEntity(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 233,
+      "symbol": "MIDIObject.externalSource(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 234,
+      "symbol": "MIDIObject.externalDestination(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 304,
+      "symbol": "MIDIClientDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 305,
+      "symbol": "MIDIClientDelegate.midiClient(_:didRecieve:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 308,
+      "symbol": "MIDIClient",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 309,
+      "symbol": "MIDIClient.Notification",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 310,
+      "symbol": "MIDIClient.Notification.setupChanged",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 311,
+      "symbol": "MIDIClient.Notification.added(parent:child:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 312,
+      "symbol": "MIDIClient.Notification.removed(parent:child:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 313,
+      "symbol": "MIDIClient.Notification.propertyChanged(of:propertyName:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 314,
+      "symbol": "MIDIClient.Notification.thruConnectionChanged",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 315,
+      "symbol": "MIDIClient.Notification.serialPortOwnerChanged",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 316,
+      "symbol": "MIDIClient.Notification.ioError(device:error:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 319,
+      "symbol": "MIDIClient.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 320,
+      "symbol": "MIDIClient.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 321,
+      "symbol": "MIDIClient.delegate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 323,
+      "symbol": "MIDIClient.init(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 327,
+      "symbol": "MIDIClient.start()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 343,
+      "symbol": "MIDIClient",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 344,
+      "symbol": "MIDIClient.makeOutputPort(name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 347,
+      "symbol": "MIDIClient.makeInputPort(name:callback:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 352,
+      "symbol": "MIDIOutputPort",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 353,
+      "symbol": "MIDIOutputPort.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 354,
+      "symbol": "MIDIOutputPort.init(client:name:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 384,
+      "symbol": "Sequence.allocatePackageList(timeStamp:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 406,
+      "symbol": "MIDIOutputPort",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 407,
+      "symbol": "MIDIOutputPort.send(_:to:timeStamp:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 414,
+      "symbol": "MIDIOutputPort",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 415,
+      "symbol": "MIDIOutputPort.send(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 421,
+      "symbol": "MIDIPackage",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 422,
+      "symbol": "MIDIPackage.source",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 423,
+      "symbol": "MIDIPackage.timeStamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 424,
+      "symbol": "MIDIPackage.messages",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 449,
+      "symbol": "MIDIPacketList.parse(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 473,
+      "symbol": "MIDIInputPort",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 474,
+      "symbol": "MIDIInputPort.Value",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 475,
+      "symbol": "MIDIInputPort.ReadBlock",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 476,
+      "symbol": "MIDIInputPort.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 479,
+      "symbol": "MIDIInputPort.init(client:name:callback:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 509,
+      "symbol": "MIDIInputPort",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 510,
+      "symbol": "MIDIInputPort.connect(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIKit.swift",
+      "line": 523,
+      "symbol": "MIDIInputPort.disconnect(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 11,
+      "symbol": "MIDIMessage",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 12,
+      "symbol": "MIDIMessage",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 12,
+      "symbol": "MIDIMessage.channelMessage(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 13,
+      "symbol": "MIDIMessage.systemExclusivMessage(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 14,
+      "symbol": "MIDIMessage.systemCommonMessage(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 15,
+      "symbol": "MIDIMessage.systemRealtimeMessage(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 18,
+      "symbol": "MIDIMessage",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 19,
+      "symbol": "MIDIMessage.noteOffEvent(channel:key:velocity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 22,
+      "symbol": "MIDIMessage.noteOnEvent(channel:key:velocity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 25,
+      "symbol": "MIDIMessage.polyphonicKeyPressure(channel:key:pressure:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 28,
+      "symbol": "MIDIMessage.controlChange(channel:controller:value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 31,
+      "symbol": "MIDIMessage.programChange(channel:programmNumber:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 34,
+      "symbol": "MIDIMessage.channelPressure(channel:pressure:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 37,
+      "symbol": "MIDIMessage.pitchBendChange(channel:value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 42,
+      "symbol": "MIDIChannelMessage",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 43,
+      "symbol": "MIDIChannelMessage.channelRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 44,
+      "symbol": "MIDIChannelMessage.keyRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 45,
+      "symbol": "MIDIChannelMessage.controllerRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 46,
+      "symbol": "MIDIChannelMessage.programmNumberRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 47,
+      "symbol": "MIDIChannelMessage.byteRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 48,
+      "symbol": "MIDIChannelMessage.Kind",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 49,
+      "symbol": "MIDIChannelMessage.Kind.noteOffEvent(key:velocity:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 50,
+      "symbol": "MIDIChannelMessage.Kind.noteOnEvent(key:velocity:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 51,
+      "symbol": "MIDIChannelMessage.Kind.polyphonicKeyPressure(key:pressure:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 52,
+      "symbol": "MIDIChannelMessage.Kind.controlChange(controller:value:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 53,
+      "symbol": "MIDIChannelMessage.Kind.programChange(programmNumber:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 54,
+      "symbol": "MIDIChannelMessage.Kind.channelPressure(pressure:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 55,
+      "symbol": "MIDIChannelMessage.Kind.pitchBendChange(value:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 57,
+      "symbol": "MIDIChannelMessage.channel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 58,
+      "symbol": "MIDIChannelMessage.kind",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 61,
+      "symbol": "MIDIChannelMessage",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 62,
+      "symbol": "MIDIChannelMessage.noteOffEvent(channel:key:velocity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 65,
+      "symbol": "MIDIChannelMessage.noteOnEvent(channel:key:velocity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 68,
+      "symbol": "MIDIChannelMessage.polyphonicKeyPressure(channel:key:pressure:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 71,
+      "symbol": "MIDIChannelMessage.controlChange(channel:controller:value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 74,
+      "symbol": "MIDIChannelMessage.programChange(channel:programmNumber:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 77,
+      "symbol": "MIDIChannelMessage.channelPressure(channel:pressure:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 79,
+      "symbol": "MIDIMessage",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 80,
+      "symbol": "MIDIChannelMessage.pitchBendChange(channel:value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 85,
+      "symbol": "MIDIChannelMessage",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 86,
+      "symbol": "MIDIChannelMessage.significantChannelBits",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 87,
+      "symbol": "MIDIChannelMessage.getChannel(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 92,
+      "symbol": "MIDISystemCommonMessage",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 93,
+      "symbol": "MIDISystemCommonMessage.midiTimeCodeQuarterFrameMessageTypeRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 94,
+      "symbol": "MIDISystemCommonMessage.midiTimeCodeQuarterFrame(messageType:values:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 95,
+      "symbol": "MIDISystemCommonMessage.songPositionPointer(value:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 96,
+      "symbol": "MIDISystemCommonMessage.songSelect(value:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 97,
+      "symbol": "MIDISystemCommonMessage.undefined1",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 98,
+      "symbol": "MIDISystemCommonMessage.undefined2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 99,
+      "symbol": "MIDISystemCommonMessage.tuneRequest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 101,
+      "symbol": "MIDISystemRealtimeMessage",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 102,
+      "symbol": "MIDISystemRealtimeMessage.byteRange",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 103,
+      "symbol": "MIDISystemRealtimeMessage.timeClock",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 104,
+      "symbol": "MIDISystemRealtimeMessage.undefined1",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 105,
+      "symbol": "MIDISystemRealtimeMessage.start",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 106,
+      "symbol": "MIDISystemRealtimeMessage.continue",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 107,
+      "symbol": "MIDISystemRealtimeMessage.stop",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 108,
+      "symbol": "MIDISystemRealtimeMessage.undefined2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 109,
+      "symbol": "MIDISystemRealtimeMessage.activeSensing",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessage.swift",
+      "line": 110,
+      "symbol": "MIDISystemRealtimeMessage.reset",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessageToBytes.swift",
+      "line": 69,
+      "symbol": "Sequence.write(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIMessageToBytes.swift",
+      "line": 80,
+      "symbol": "MIDIMessage.write(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIParser.swift",
+      "line": 221,
+      "symbol": "MIDIParser",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIParser.swift",
+      "line": 225,
+      "symbol": "MIDIParser.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIParser.swift",
+      "line": 226,
+      "symbol": "MIDIParser.parse(data:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/MIDIKit/MIDIKit/Sources/MIDIKit/MIDIParser.swift",
+      "line": 294,
+      "symbol": "MIDIParser.hasIncompleteMessageInBuffer()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/work/MIDIKit/MIDIKit"
+}

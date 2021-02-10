@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MIDIChannelMessage Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/MIDIChannelMessage" class="dashAnchor"></a>
+    <a title="MIDIChannelMessage Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MIDIKit 1.0.0 Docs</a> (5% documented)</p>
+        <p class="header-right"><a href="https://github.com/dnadoba/MIDIKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fdnadoba.github.io%2FMIDIKit%2Fdocsets%2FMIDIKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MIDIKit Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MIDIChannelMessage Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIClient.html">MIDIClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIClient/Notification.html">– Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIInputPort.html">MIDIInputPort</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDINetworkClient.html">MIDINetworkClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIOutputPort.html">MIDIOutputPort</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/MIDIError.html">MIDIError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MIDIMessage.html">MIDIMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MIDIObject.html">MIDIObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MIDISystemCommonMessage.html">MIDISystemCommonMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MIDISystemRealtimeMessage.html">MIDISystemRealtimeMessage</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/MIDINotificationMessageID.html">MIDINotificationMessageID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MIDIObjectType.html">MIDIObjectType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MIDIPacketList.html">MIDIPacketList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MIDIClientDelegate.html">MIDIClientDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MIDIObjectProtocol.html">MIDIObjectProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIChannelMessage.html">MIDIChannelMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIChannelMessage/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIDevice.html">MIDIDevice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIDevice/Identifier.html">– Identifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIEndpoint.html">MIDIEndpoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIEntity.html">MIDIEntity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIPackage.html">MIDIPackage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIParser.html">MIDIParser</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MIDIChannelMessage</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MIDIChannelMessage</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV12channelRangeSNys5UInt8VGvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/channelRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV12channelRangeSNys5UInt8VGvpZ">channelRange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">channelRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV8keyRangeSNys5UInt8VGvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/keyRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV8keyRangeSNys5UInt8VGvpZ">keyRange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">keyRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV15controllerRangeSNys5UInt8VGvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/controllerRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV15controllerRangeSNys5UInt8VGvpZ">controllerRange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">controllerRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV19programmNumberRangeSNys5UInt8VGvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/programmNumberRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV19programmNumberRangeSNys5UInt8VGvpZ">programmNumberRange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">programmNumberRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV9byteRangeSNys5UInt8VGvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/byteRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV9byteRangeSNys5UInt8VGvpZ">byteRange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">byteRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV4KindO"></a>
+                    <a name="//apple_ref/swift/Enum/Kind" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV4KindO">Kind</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Structs/MIDIChannelMessage/Kind.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Kind</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV7channels5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/channel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV7channels5UInt8Vvp">channel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV4kindAC4KindOvp"></a>
+                    <a name="//apple_ref/swift/Property/kind" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV4kindAC4KindOvp">kind</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Structs/MIDIChannelMessage/Kind.html">Kind</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV12noteOffEvent7channel3key8velocityACs5UInt8V_A2ItFZ"></a>
+                    <a name="//apple_ref/swift/Method/noteOffEvent(channel:key:velocity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV12noteOffEvent7channel3key8velocityACs5UInt8V_A2ItFZ">noteOffEvent(channel:<wbr>key:<wbr>velocity:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">noteOffEvent</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">velocity</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV11noteOnEvent7channel3key8velocityACs5UInt8V_A2ItFZ"></a>
+                    <a name="//apple_ref/swift/Method/noteOnEvent(channel:key:velocity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV11noteOnEvent7channel3key8velocityACs5UInt8V_A2ItFZ">noteOnEvent(channel:<wbr>key:<wbr>velocity:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">noteOnEvent</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">velocity</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV21polyphonicKeyPressure7channel3key8pressureACs5UInt8V_A2ItFZ"></a>
+                    <a name="//apple_ref/swift/Method/polyphonicKeyPressure(channel:key:pressure:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV21polyphonicKeyPressure7channel3key8pressureACs5UInt8V_A2ItFZ">polyphonicKeyPressure(channel:<wbr>key:<wbr>pressure:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">polyphonicKeyPressure</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">pressure</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV13controlChange7channel10controller5valueACs5UInt8V_A2ItFZ"></a>
+                    <a name="//apple_ref/swift/Method/controlChange(channel:controller:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV13controlChange7channel10controller5valueACs5UInt8V_A2ItFZ">controlChange(channel:<wbr>controller:<wbr>value:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">controlChange</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV13programChange7channel14programmNumberACs5UInt8V_AHtFZ"></a>
+                    <a name="//apple_ref/swift/Method/programChange(channel:programmNumber:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV13programChange7channel14programmNumberACs5UInt8V_AHtFZ">programChange(channel:<wbr>programmNumber:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">programChange</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">programmNumber</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV15channelPressure0D08pressureACs5UInt8V_AHtFZ"></a>
+                    <a name="//apple_ref/swift/Method/channelPressure(channel:pressure:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV15channelPressure0D08pressureACs5UInt8V_AHtFZ">channelPressure(channel:<wbr>pressure:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">channelPressure</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">pressure</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV15pitchBendChange7channel5valueACs5UInt8V_s6UInt16VtFZ"></a>
+                    <a name="//apple_ref/swift/Method/pitchBendChange(channel:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV15pitchBendChange7channel5valueACs5UInt8V_s6UInt16VtFZ">pitchBendChange(channel:<wbr>value:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">pitchBendChange</span><span class="p">(</span><span class="nv">channel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MIDIChannelMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV22significantChannelBitss5UInt8VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/significantChannelBits" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV22significantChannelBitss5UInt8VvpZ">significantChannelBits</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">significantChannelBits</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7MIDIKit18MIDIChannelMessageV10getChannelys5UInt8VAFFZ"></a>
+                    <a name="//apple_ref/swift/Method/getChannel(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7MIDIKit18MIDIChannelMessageV10getChannelys5UInt8VAFFZ">getChannel(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getChannel</span><span class="p">(</span><span class="n">_</span> <span class="nv">byte</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="http://nadoba.de" target="_blank" rel="external">David Nadoba</a>. All rights reserved. (Last updated: 2021-02-10)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
