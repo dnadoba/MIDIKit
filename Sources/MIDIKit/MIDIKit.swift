@@ -380,7 +380,7 @@ private let sizeOfMIDIPacketListHeader = sizeOfMIDIPacketList - sizeOfMIDIPacket
 private let sizeOfMIDIPacketHeader = MemoryLayout<MIDITimeStamp>.size + MemoryLayout<UInt16>.size
 private let sizeOfMIDICombinedHeaders = sizeOfMIDIPacketListHeader + sizeOfMIDIPacketHeader
 
-extension Sequence where Element == MIDIMessage {
+extension Collection where Element == MIDIMessage, Index == Int {
     public func allocatePackageList(timeStamp: MIDITimeStamp = 0) -> UnsafePointer<MIDIPacketList> {
         let sizeOfAlleMessages = self.size
         assert(sizeOfAlleMessages <= Int(UInt16.max), "allocatePackageList does not support messages bigger than \(UInt16.max)")
@@ -392,11 +392,34 @@ extension Sequence where Element == MIDIMessage {
         
         let packetList = packetListPointer.assumingMemoryBound(to: MIDIPacketList.self)
         
-        let packet = MIDIPacketListInit(packetList)
-        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
-        defer { buffer.deallocate() }
-        write(to: buffer)
-        MIDIPacketListAdd(packetList, packetListSize, packet, timeStamp, size, UnsafePointer(buffer))
+        var packet: UnsafeMutablePointer<MIDIPacket>?
+        func add<S: Sequence>(_ messages: S) where S.Element == MIDIMessage {
+            let currentPacket: UnsafeMutablePointer<MIDIPacket> = {
+                if let currentPacket = packet {
+                    // second iteration, we get the next packet from the current one
+                    packet = MIDIPacketNext(currentPacket)
+                } else {
+                    // first iteration, we do need to create the initial packet
+                    packet = MIDIPacketListInit(packetList)
+                }
+                return packet!
+            }()
+            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
+            defer { buffer.deallocate() }
+            write(to: buffer)
+            
+            MIDIPacketListAdd(packetList, packetListSize, currentPacket, timeStamp, size, UnsafePointer(buffer))
+        }
+        
+        // try to naively split the message into two separate packet lists
+        let split = count/2
+        if split > 1 {
+            add(self[..<split])
+            add(self[split...])
+        } else {
+            add(self[...])
+        }
+
 
         return UnsafePointer(packetList)
     }
@@ -405,6 +428,7 @@ extension Sequence where Element == MIDIMessage {
 
 extension MIDIOutputPort {
     public func send(_ messages: [MIDIMessage], to destination: MIDIEndpoint, timeStamp: MIDITimeStamp = 0) throws {
+        
         let packetList = messages.allocatePackageList(timeStamp: timeStamp)
         defer { packetList.deallocate() }
         try send(packetList, to: destination)

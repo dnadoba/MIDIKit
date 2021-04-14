@@ -1,9 +1,5 @@
 import Foundation
 import MIDIKit
-import PlaygroundSupport
-
-// Keep playground running
-PlaygroundPage.current.needsIndefiniteExecution = true
 
 let client = MIDIClient(name: "MidiTestClient")
 try client.start()
@@ -30,7 +26,7 @@ let inputPorts = try MIDIEndpoint.getAllSources().map { source -> MIDIInputPort 
     let inputPort = try client.makeInputPort(name: "MIDItest_inputPort") { (result) in
         do {
             let packet = try result.get()
-            print("MIDI Received From Source: \(packet.source.displayName ?? "-") \(packet.source.entity?.device?.identifier.debugDescription ?? "-")")
+            print("MIDI Received \(packet.messages.count) Messages From Source: \(packet.source.displayName ?? "-") \(packet.source.entity?.device?.identifier.debugDescription ?? "-")")
             for message in packet.messages {
                 print(message)
             }
@@ -59,4 +55,8 @@ func send(_ messages: [MIDIMessage]) throws {
 }
 
 /// send messages to all devices
-try send(Array(repeating: .controlChange(channel: 1, controller: 2, value: 3), count: 100))
+while true {
+    try send(Array(repeating: .controlChange(channel: 1, controller: 2, value: 3), count: 50))
+}
+
+sleep(.max)
