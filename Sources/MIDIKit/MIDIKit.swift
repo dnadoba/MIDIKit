@@ -137,6 +137,10 @@ public struct MIDIDevice: MIDIObjectProtocol, Hashable {
     }
 }
 
+extension MIDIDevice.Identifier: CustomDebugStringConvertible {
+    public var debugDescription: String { uniqueID.description }
+}
+
 extension MIDIDevice {
     public static func getAll() -> [MIDIDevice] {
         return (0..<MIDIGetNumberOfDevices())

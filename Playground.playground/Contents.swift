@@ -9,21 +9,28 @@ let client = MIDIClient(name: "MidiTestClient")
 try client.start()
 
 // log all currently connected devices
+let expectedLength = 30
 print("Devices:")
 MIDIDevice.getAll().forEach {
-    print("   \($0.name as Any)")
-    print("   Entities:")
-    $0.getEntities().forEach {
-        print("      \($0.name as Any)")
-        print("      Sources:")
+    print("Name: \($0.name ?? "-unknown name-")")
+    print("ID: \($0.identifier?.debugDescription ?? "-unknown id-")")
+    let entities = $0.getEntities()
+    if !entities.isEmpty {
+        print("Entities:")
+    }
+    entities.forEach {
+        print("   \($0.name ?? "-unknown name-")")
+        print("   \($0.name ?? "-unknown name-")")
+        print("   Sources:")
         $0.getSources().forEach {
-            print("         \($0.name as Any)")
+            print("      \($0.name ?? "-unknown name-")")
         }
         print("      Destinations:")
         $0.getDestinations().forEach {
-            print("         \($0.name as Any)")
+            print("      \($0.name ?? "-unknown name-")")
         }
     }
+    print("-----------------------------------------------")
 }
 // receiving all messages
 let inputPorts = try MIDIEndpoint.getAllSources().map { source -> MIDIInputPort in
