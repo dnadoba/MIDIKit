@@ -164,8 +164,8 @@ extension MIDIDevice {
 }
 
 extension MIDIDevice {
-    public var identifier: Identifier? {
-        return uniqueID.map(Identifier.init)
+    public var identifier: Identifier {
+        return uniqueID.map(Identifier.init)!
     }
     public var offline: Bool { return ((try? getProperty(for: kMIDIPropertyOffline)) ?? 1) == 1 }
 }
